@@ -27,18 +27,32 @@ public class Logic
         };
         Statement statement = new Statement()
         {
-            SeekerId = seeker.Id,
             Status = StatementStatus.Created.GetHashCode(),
             SuperVisorId = 2, // Руководитель
             Value = -1,
         };
 
-        // Добавление нового соискателя 
-        var data = $"name={seeker.Name}&lastName={seeker.LastName}&number={seeker.Number}&patronymic={seeker.Patronymic}&postId={seeker.PostId}&taskTime={seeker.TaskTime.ToString()}&workerId={seeker.WorkerId}";
+        // Добавление нового соискателя, который не выполнит задание
+        var data = $"name=Alex&lastName={seeker.LastName}&number={seeker.Number}&patronymic={seeker.Patronymic}&postId={seeker.PostId}" +
+                   $"&taskTime={(DateTime.UtcNow + TimeSpan.FromSeconds(20)).ToString()}&workerId={seeker.WorkerId}";
         var response = ApiRequest.PostRequest("https://localhost:7179/api/newseeker", data);
         seeker.Id = Int32.Parse(response);
-        Console.WriteLine($"Response from server {response}");
+        statement.SeekerId = seeker.Id;
+        Console.WriteLine($"Seeker id {response}");
         
+        // Предоставление задания 
+        data = $"seekerId={statement.SeekerId}&status={statement.Status}&superVisorId={statement.SuperVisorId}&value={statement.Value}";
+        response = ApiRequest.PostRequest("https://localhost:7179/api/newstatement", data);
+        statement.Id = Int32.Parse(response);
+        
+        // Добавление нового соискателя 
+        data = $"name={seeker.Name}&lastName={seeker.LastName}&number={seeker.Number}&patronymic={seeker.Patronymic}&postId={seeker.PostId}" +
+                   $"&taskTime={seeker.TaskTime.ToString()}&workerId={seeker.WorkerId}";
+        response = ApiRequest.PostRequest("https://localhost:7179/api/newseeker", data);
+        seeker.Id = Int32.Parse(response);
+        statement.SeekerId = seeker.Id;
+        Console.WriteLine($"Seeker id {response}");
+
         // Предоставление задания 
         data = $"seekerId={statement.SeekerId}&status={statement.Status}&superVisorId={statement.SuperVisorId}&value={statement.Value}";
         response = ApiRequest.PostRequest("https://localhost:7179/api/newstatement", data);
@@ -62,6 +76,10 @@ public class Logic
         
         // Загрузка всех соискателесь (Без фильтров)
         response = ApiRequest.PostRequest("https://localhost:7179/api/seekersinfo", $"id=1");
+        
+        // Загрузка всех соискателей с фильтрами
+        response = ApiRequest.PostRequest("https://localhost:7179/api/seekersinfo", $"id=1&fromTime={DateTime.UtcNow-TimeSpan.FromHours(255)}&endTime={DateTime.UtcNow}");
+        Console.WriteLine($"Все соискатели с фильтрами по времени:\n{response}");
 
     }
 }
