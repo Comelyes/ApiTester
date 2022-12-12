@@ -41,7 +41,7 @@ public class Logic
         Console.WriteLine($"Seeker id {response}");
         
         // Предоставление задания 
-        data = $"seekerId={statement.SeekerId}&status={statement.Status}&superVisorId={statement.SuperVisorId}&value={statement.Value}";
+        data = $"seekerId={statement.SeekerId}&superVisorId={statement.SuperVisorId}";
         response = ApiRequest.PostRequest("https://localhost:7179/api/newstatement", data);
         statement.Id = Int32.Parse(response);
         
@@ -54,7 +54,7 @@ public class Logic
         Console.WriteLine($"Seeker id {response}");
 
         // Предоставление задания 
-        data = $"seekerId={statement.SeekerId}&status={statement.Status}&superVisorId={statement.SuperVisorId}&value={statement.Value}";
+        data = $"seekerId={statement.SeekerId}&superVisorId={statement.SuperVisorId}";
         response = ApiRequest.PostRequest("https://localhost:7179/api/newstatement", data);
         statement.Id = Int32.Parse(response);
         

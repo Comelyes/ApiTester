@@ -7,15 +7,11 @@
     <list default="true" id="e435c84d-1e2c-45c1-9a9f-96d6f9f28a0c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ApiTester/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ApiTester/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,7 +66,8 @@
       <updated>1669878673894</updated>
       <workItem from="1669878689188" duration="4069000" />
       <workItem from="1670377322232" duration="3401000" />
-      <workItem from="1670399553087" duration="1920000" />
+      <workItem from="1670399553087" duration="2483000" />
+      <workItem from="1670806309046" duration="3513000" />
     </task>
     <servers />
   </component>
